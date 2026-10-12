@@ -1,0 +1,82 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ---------- Brand tokens (sampled from the Tech Village logo) ----------
+   navy   #0B1D5B  "TECH" wordmark
+   brand  #1F5BFF  royal blue, primary actions
+   cyan   #22D3EE  arrow head / "VILLAGE" mid
+   mint   #34E3A0  green end of the gradient
+   violet #6A2EE0  node dots
+   Text-safe variants (cyan-text, mint-text) are darkened so they pass 4.5:1 on light surfaces.
+   Contrast results are recorded in docs/brand-tokens.md */
+:root {
+  --tv-surface: 246 248 253;
+  --tv-raised: 255 255 255;
+  --tv-sunken: 236 240 250;
+  --tv-line: 218 225 242;
+  --tv-ink: 11 21 51;
+  --tv-muted: 91 107 149;
+
+  --tv-navy: 11 29 91;
+  --tv-brand: 31 91 255;
+  --tv-brand-strong: 22 70 214;
+  --tv-brand-soft: 226 235 255;
+  --tv-brand-on: 255 255 255;
+  --tv-cyan: 34 211 238;
+  --tv-cyan-text: 7 122 158;
+  --tv-mint: 52 227 160;
+  --tv-mint-text: 6 122 85;
+  --tv-violet: 106 46 224;
+
+  --tv-danger: 200 30 50;
+  --tv-danger-soft: 253 232 235;
+  --tv-warn: 156 96 0;
+  --tv-warn-soft: 255 243 214;
+}
+
+.dark {
+  --tv-surface: 7 13 31;
+  --tv-raised: 14 23 48;
+  --tv-sunken: 4 8 20;
+  --tv-line: 32 46 84;
+  --tv-ink: 232 238 255;
+  --tv-muted: 147 163 207;
+
+  --tv-navy: 232 238 255; /* wordmark navy flips to light on dark */
+  --tv-brand: 91 140 255;
+  --tv-brand-strong: 128 165 255;
+  --tv-brand-soft: 20 36 82;
+  --tv-brand-on: 7 13 31;
+  --tv-cyan-text: 34 211 238;
+  --tv-mint-text: 52 227 160;
+  --tv-violet: 155 123 255;
+
+  --tv-danger: 255 122 138;
+  --tv-danger-soft: 60 18 28;
+  --tv-warn: 245 190 90;
+  --tv-warn-soft: 50 36 8;
+}
+
+@layer base {
+  html { color-scheme: light; }
+  html.dark { color-scheme: dark; }
+  body {
+    @apply bg-surface font-sans text-ink antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  h1, h2, h3, h4 { @apply font-display tracking-tight text-ink; }
+  :focus-visible {
+    outline: 2px solid rgb(var(--tv-brand));
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  }
+}
+
+@layer components {
+  .panel { @apply rounded-panel border border-line bg-raised shadow-panel; }
+  .link { @apply font-medium text-brand underline-offset-4 hover:underline; }
+}
