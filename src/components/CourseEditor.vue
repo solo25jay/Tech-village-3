@@ -5,6 +5,7 @@ import BaseField from '@/components/BaseField.vue'
 import BaseTextarea from '@/components/BaseTextarea.vue'
 import BaseButton from '@/components/BaseButton.vue'
 import LessonContent from '@/components/LessonContent.vue'
+import CourseAssessments from '@/components/CourseAssessments.vue'
 import {
   getCourse, updateCourse, deleteCourse, loadOutline, addModule, renameModule, deleteModule, addLesson, renameLesson,
   deleteLesson, swapPositions, loadBlocks, addBlock, updateBlock, deleteBlock,
@@ -13,6 +14,7 @@ import {
 import { parseVideoUrl } from '@/lib/video'
 import { coursePath, coursesPath, type Scope } from '@/lib/paths'
 import { friendlyError } from '@/lib/errors'
+import { b } from 'vue-router/dist/router-CWoNjPRp.mjs'
 
 const props = defineProps<{ orgId: string; courseId: string; scope: Scope }>()
 const router = useRouter()
@@ -236,6 +238,7 @@ const removeBlock = (b: BlockRow) => run(async () => { await deleteBlock(b.id); 
           </template>
         </section>
       </div>
+      <div class="mt-10"><CourseAssessments :org-id="orgId" :course-id="courseId" :scope="scope" mode="editor" /></div>
     </template>
   </div>
 </template>

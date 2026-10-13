@@ -2,6 +2,7 @@
 import { ref, computed, watch } from 'vue'
 import BaseButton from '@/components/BaseButton.vue'
 import LessonContent from '@/components/LessonContent.vue'
+import CourseAssessments from '@/components/CourseAssessments.vue'
 import {
   getCourse, loadOutline, loadBlocks, enrol, withdraw, completedLessonIds, markComplete, unmarkComplete,
   myEnrolledCourseIds, type Course, type ModuleRow, type LessonRow, type BlockRow,
@@ -144,6 +145,8 @@ const toggleDone = () => run(async () => {
           <p v-else class="text-muted">Select a lesson to begin.</p>
         </article>
       </div>
+
+      <div v-if="canSeeContent" class="mt-10"><CourseAssessments :org-id="orgId" :course-id="courseId" :scope="scope" mode="learner" /></div>
     </template>
   </div>
 </template>
